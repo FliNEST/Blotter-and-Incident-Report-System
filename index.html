@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Barangay Management System</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <!-- ========== HEADER ========== -->
+    <div class="header">
+        <div class="header-left">
+            <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <line x1="3" y1="12" x2="21" y2="12" />
+                    <line x1="3" y1="18" x2="21" y2="18" />
+                </svg>
+            </button>
+            <img class="logo-img" src="images/barangay logo.jpg" alt="Barangay Logo" />
+            <div class="header-title">
+                <h1>BARANGAY MANAGEMENT SYSTEM</h1>
+                <p>Barangay Sta. Ana, Pateros</p>
+            </div>
+        </div>
+        <div class="header-right">
+            <span class="breadcrumb">Blotter / Create Report</span>
+            <div class="header-icons">
+                <button class="icon-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                    </svg>
+                </button>
+                <button class="icon-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== SIDEBAR OVERLAY ========== -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ========== LAYOUT ========== -->
+    <div class="layout">
+
+        <!-- ===== SIDEBAR ===== -->
+        <div class="sidebar">
+            <div class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="3 9 12 4 21 9" />
+                    <path d="M5 10v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6" />
+                </svg>
+                Dashboard
+            </div>
+            <div class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+                Resident
+            </div>
+            <div class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                </svg>
+                Certificate
+            </div>
+            <div class="nav-item active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                </svg>
+                Blotter
+            </div>
+            <div class="submenu">
+                <div class="sub-item">Dashboard</div>
+                <div class="sub-item" style="font-weight:600;color:#0d3461;">Create Report</div>
+                <div class="sub-item" id="allIncidentLink">All Incident</div>
+                <div class="sub-item">Schedules</div>
+            </div>
+            <div class="nav-divider"></div>
+            <div class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                Financial
+            </div>
+            <div class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+                    <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+                    <line x1="6" y1="1" x2="6" y2="4" />
+                    <line x1="10" y1="1" x2="10" y2="4" />
+                    <line x1="14" y1="1" x2="14" y2="4" />
+                </svg>
+                Announcement
+            </div>
+            <div class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                </svg>
+                Account
+            </div>
+            <div class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3" />
+                    <path d="M19.07 4.93l-1.41 1.41M4.93 4.93l1.41 1.41M19.07 19.07l-1.41-1.41M4.93 19.07l1.41-1.41M12 2v2M12 20v2M2 12h2M20 12h2" />
+                </svg>
+                Settings
+            </div>
+            <div class="nav-divider"></div>
+            <div class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                    <polyline points="16 17 21 12 16 7" />
+                    <line x1="21" y1="12" x2="9" y2="12" />
+                </svg>
+                Logout
+            </div>
+        </div>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <div class="main">
+
+            <!-- ===== CREATE REPORT FORM ===== -->
+            <div id="createReportSection">
+                <div class="section-box">
+                    <div class="section-header" style="background:transparent;color:#333;padding:12px 18px 0px;">
+                        <h3 style="font-weight:700;margin-bottom:2px;font-size:16px;color:#222;">Blotter Report</h3>
+                        <p style="font-size:13px;color:#777;font-weight:400;margin-bottom:8px;">Fill in the details below</p>
+                    </div>
+                    <div style="padding:0 18px 18px;">
+
+                        <!-- STEP 1 -->
+                        <div class="form-step" id="step1">
+                            <div class="form-group" style="margin-bottom:6px;">
+                                <label style="font-size:13px;font-weight:500;color:#333;display:block;margin-bottom:4px;">Bilang ng blotter entry</label>
+                                <input type="text" class="filter-input" value="Auto-generated upon submission" readonly style="width:100%;max-width:400px;background:#f5f6fa;color:#999;border:1px solid #e0e0e0;border-radius:6px;padding:10px 12px;font-size:13px;" />
+                            </div>
+                            <h4 style="margin:16px 0 8px;font-weight:700;font-size:14px;color:#222;">NAG-UULAT NA TAO</h4>
+                            <div class="two-col" style="gap:24px;">
+                                <div class="col-left" style="flex:1;">
+                                    <div class="filter-group" style="margin-bottom:10px;">
+                                        <label style="font-size:13px;font-weight:500;color:#333;">Pangalan</label>
+                                        <input class="filter-input" type="text" placeholder="Buong Pangalan" style="width:100%;border:1px solid #e0e0e0;border-radius:6px;padding:10px 12px;font-size:13px;" />
+                                    </div>
+                                    <div class="filter-group" style="margin-bottom:10px;">
+                                        <label style="font-size:13px;font-weight:500;color:#333;">Tirahan</label>
+                                        <input class="filter-input" type="text" placeholder="Kumpletong address" style="width:100%;border:1px solid #e0e0e0;border-radius:6px;padding:10px 12px;font-size:13px;" />
+                                    </div>
+                                </div>
+                                <div class="col-right" style="flex:1;">
+                                    <div class="filter-group" style="margin-bottom:10px;">
+                                        <label style="font-size:13px;font-weight:500;color:#333;">Petsa at oras ng pag-uulat</label>
+                                        <input class="filter-input" type="datetime-local" style="width:100%;border:1px solid #e0e0e0;border-radius:6px;padding:10px 12px;font-size:13px;" />
+                                    </div>
+                                    <div class="filter-group" style="margin-bottom:10px;">
+                                        <label style="font-size:13px;font-weight:500;color:#333;">Telepono</label>
+                                        <input class="filter-input" type="text" placeholder="Numero ng cellphone o landline" style="width:100%;border:1px solid #e0e0e0;border-radius:6px;padding:10px 12px;font-size:13px;" />
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 style="margin:16px 0 8px;font-weight:700;font-size:14px;color:#222;">INAANGKIN NA NASASANGKOT (RESPONDENT)</h4>
+                            <div class="two-col" style="gap:24px;">
+                                <div class="col-left" style="flex:1;">
+                                    <div class="filter-group" style="margin-bottom:10px;">
+                                        <label style="font-size:13px;font-weight:500;color:#333;">Pangalan</label>
+                                        <input class="filter-input" type="text" placeholder="Buong Pangalan" style="width:100%;border:1px solid #e0e0e0;border-radius:6px;padding:10px 12px;font-size:13px;" />
+                                    </div>
+                                    <div class="filter-group" style="margin-bottom:10px;">
+                                        <label style="font-size:13px;font-weight:500;color:#333;">Tirahan</label>
+                                        <input class="filter-input" type="text" placeholder="Kumpletong address" style="width:100%;border:1px solid #e0e0e0;border-radius:6px;padding:10px 12px;font-size:13px;" />
+                                    </div>
+                                </div>
+                                <div class="col-right" style="flex:1;">
+                                    <div class="filter-group" style="margin-bottom:10px;">
+                                        <label style="font-size:13px;font-weight:500;color:#333;">Ugnayan sa Insidente</label>
+                                        <input class="filter-input" type="text" placeholder="Hal. biktima, saksi, kamag-anak" style="width:100%;border:1px solid #e0e0e0;border-radius:6px;padding:10px 12px;font-size:13px;" />
+                                    </div>
+                                    <div class="filter-group" style="margin-bottom:10px;">
+                                        <label style="font-size:13px;font-weight:500;color:#333;">Telepono</label>
+                                        <input class="filter-input" type="text" placeholder="Numero ng cellphone o landline" style="width:100%;border:1px solid #e0e0e0;border-radius:6px;padding:10px 12px;font-size:13px;" />
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 style="margin:16px 0 8px;font-weight:700;font-size:14px;color:#222;">URI NG INSIDENTE</h4>
+                            <div style="display:flex;flex-wrap:wrap;gap:8px 20px;">
+                                <label style="font-weight:400;font-size:13px;color:#333;display:flex;align-items:center;gap:4px;"><input type="checkbox" style="width:14px;height:14px;" /> Pisikal na Pananakit</label>
+                                <label style="font-weight:400;font-size:13px;color:#333;display:flex;align-items:center;gap:4px;"><input type="checkbox" style="width:14px;height:14px;" /> Pagnanakaw</label>
+                                <label style="font-weight:400;font-size:13px;color:#333;display:flex;align-items:center;gap:4px;"><input type="checkbox" style="width:14px;height:14px;" /> Karahasang Domestiko</label>
+                                <label style="font-weight:400;font-size:13px;color:#333;display:flex;align-items:center;gap:4px;"><input type="checkbox" style="width:14px;height:14px;" /> Panlalait o Paninira</label>
+                                <label style="font-weight:400;font-size:13px;color:#333;display:flex;align-items:center;gap:4px;"><input type="checkbox" style="width:14px;height:14px;" /> Pagsalakay sa Ari-arian</label>
+                                <label style="font-weight:400;font-size:13px;color:#333;display:flex;align-items:center;gap:4px;"><input type="checkbox" style="width:14px;height:14px;" /> Paninira ng Ari-arian</label>
+                                <label style="font-weight:400;font-size:13px;color:#333;display:flex;align-items:center;gap:4px;">
+                                    <input type="checkbox" style="width:14px;height:14px;" /> Iba pa: 
+                                    <input type="text" placeholder="Ilagay dito" style="width:120px;flex:none;padding:6px 8px;border:1px solid #e0e0e0;border-radius:4px;font-size:13px;margin-left:4px;" />
+                                </label>
+                            </div>
+                            <div style="display:flex;justify-content:flex-end;margin-top:20px;">
+                                <button class="btn-next" onclick="nextStep(2)" style="background:#0d3461;color:white;border:none;padding:8px 30px;border-radius:6px;font-size:14px;cursor:pointer;font-weight:600;">NEXT →</button>
+                            </div>
+                        </div>
+
+                        <!-- STEP 2 -->
+                        <div class="form-step" id="step2" style="display:none;">
+                            <div class="filter-group" style="margin-bottom:14px;">
+                                <label style="font-size:13px;font-weight:500;color:#333;">Lugar ng Pangyayari:</label>
+                                <input class="filter-input" type="text" placeholder="Ilagay kung saan ng yari ang insidente o eksaktong lugar" style="width:100%;border:1px solid #e0e0e0;border-radius:6px;padding:10px 12px;font-size:13px;" />
+                            </div>
+                            <div style="margin-bottom:14px;">
+                                <label style="font-size:13px;font-weight:500;color:#333;display:block;margin-bottom:6px;">Petsa at oras ng pangyayari:</label>
+                                <div style="display:flex;gap:8px;align-items:center;">
+                                    <input class="filter-input" type="date" style="flex:1;border:1px solid #e0e0e0;border-radius:6px;padding:10px 12px;font-size:13px;" />
+                                    <input class="filter-input" type="time" style="flex:0.8;border:1px solid #e0e0e0;border-radius:6px;padding:10px 12px;font-size:13px;" />
+                                </div>
+                            </div>
+                            <div class="filter-group" style="margin-bottom:14px;">
+                                <label style="font-size:13px;font-weight:500;color:#333;">Detalye ng Insidente:</label>
+                                <textarea class="filter-input" rows="6" placeholder="Ikvento nang buo ang nangyari" style="width:100%;border:1px solid #e0e0e0;border-radius:6px;padding:10px 12px;font-size:13px;resize:vertical;"></textarea>
+                            </div>
+                            <h4 style="margin:16px 0 8px;font-weight:700;font-size:14px;color:#222;">AKSYONG ISINAGAWA NG MGA OPISYAL NG BARANGAY</h4>
+                            <div style="display:flex;flex-direction:column;gap:6px;">
+                                <label style="font-weight:400;font-size:13px;color:#333;display:flex;align-items:center;gap:4px;"><input type="checkbox" style="width:14px;height:14px;" /> Iskedyul ng Mediasyon</label>
+                                <label style="font-weight:400;font-size:13px;color:#333;display:flex;align-items:center;gap:4px;"><input type="checkbox" style="width:14px;height:14px;" /> Inirefer sa Pulisya</label>
+                                <label style="font-weight:400;font-size:13px;color:#333;display:flex;align-items:center;gap:4px;"><input type="checkbox" style="width:14px;height:14px;" /> Inirefer sa DSWD</label>
+                                <label style="font-weight:400;font-size:13px;color:#333;display:flex;align-items:center;gap:4px;"><input type="checkbox" style="width:14px;height:14px;" /> Nagbigay ng Babala</label>
+                                <label style="font-weight:400;font-size:13px;color:#333;display:flex;align-items:center;gap:4px;">
+                                    <input type="checkbox" style="width:14px;height:14px;" /> Iba pa: 
+                                    <input type="text" placeholder="Ilagay dito" style="width:120px;flex:none;padding:6px 8px;border:1px solid #e0e0e0;border-radius:4px;font-size:13px;margin-left:4px;" />
+                                </label>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;margin-top:20px;">
+                                <button class="btn-prev" onclick="prevStep(1)" style="background:#0d3461;color:white;border:none;padding:8px 30px;border-radius:6px;font-size:14px;cursor:pointer;font-weight:600;">← PREVIOUS</button>
+                                <button class="btn-next" onclick="nextStep(3)" style="background:#0d3461;color:white;border:none;padding:8px 30px;border-radius:6px;font-size:14px;cursor:pointer;font-weight:600;">NEXT →</button>
+                            </div>
+                        </div>
+
+                        <!-- STEP 3 -->
+                        <div class="form-step" id="step3" style="display:none;">
+                            <!-- ROW 1: Pangalan at lagda ng opisyal -->
+                            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;">
+                                <div style="flex:1;">
+                                    <h4 style="font-weight:700;font-size:13px;color:#222;">PANGALAN AT LAGDA NG OPISYAL NA TUMANGGAP NG ULAT:</h4>
+                                </div>
+                                <div style="flex:1;text-align:right;padding-left:20px;">
+                                    <div id="officialSignatureContainer" style="min-width:180px;height:55px;display:flex;align-items:flex-end;justify-content:flex-end;padding-bottom:0;">
+                                        <svg width="160" height="50" viewBox="0 0 160 50" style="display:block;">
+                                            <path d="M10,35 Q40,25 70,35 Q100,45 130,30 Q145,22 155,32" 
+                                                  fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M155,32 Q158,30 160,28" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                    <div style="margin-top:2px;font-weight:500;font-size:13px;color:#222;">Juan Dela Cruz</div>
+                                </div>
+                            </div>
+
+                            <!-- ROW 2: Lagda ng nag-uulat (Controls left, Preview right) -->
+                            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;">
+                                <!-- LEFT SIDE: Label + Input + Button -->
+                                <div style="flex:1;padding-right:20px;">
+                                    <h4 style="font-weight:700;font-size:14px;color:#222;margin-bottom:4px;">LAGDA NG NAG-UULAT:</h4>
+                                    <p style="font-size:12px;color:#666;margin-bottom:8px;">Pillin ang File (Choose File button para mag-upload ng picture ng pirma)</p>
+                                    <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;flex-wrap:wrap;">
+                                        <input type="text" id="signatureFileDisplay" readonly value="No file chosen" 
+                                               style="padding:6px 10px;border:1px solid #e0e0e0;border-radius:6px;background:#f5f6fa;font-size:13px;flex:1;min-width:150px;max-width:280px;color:#666;cursor:default;pointer-events:none;" />
+                                        <input type="file" id="signatureUpload" accept="image/*" style="display:none;" />
+                                        <button id="uploadSignatureBtn" style="background:#0d3461;color:white;border:none;padding:6px 18px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:500;">Upload file</button>
+                                    </div>
+                                    <p style="font-size:12px;color:#888;">I-click ang "Upload file" para lumabas ang larawan ng pirma sa form</p>
+                                </div>
+                                <!-- RIGHT SIDE: Uploaded signature preview -->
+                                <div style="flex:1;text-align:right;padding-left:20px;">
+                                    <div id="signaturePreviewContainer" style="display:none;text-align:right;">
+                                        <img id="signaturePreview" src="" alt="Signature Preview" style="max-width:200px;max-height:150px;border:1px solid #ddd;border-radius:4px;padding:4px;background:white;display:inline-block;" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ROW 3: Mga Kalakip na Dokumento/Ebidensya (Controls left, empty right) -->
+                            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;">
+                                <!-- LEFT SIDE: Label + Input + Button -->
+                                <div style="flex:1;padding-right:20px;">
+                                    <h4 style="font-weight:700;font-size:14px;color:#222;margin-bottom:4px;">Mga Kalakip na Dokumento/Ebidensya</h4>
+                                    <p style="font-size:12px;color:#666;margin-bottom:6px;">Mag-upload ng anumang dokumento, larawan, video, o audio file bilang suporta (opsyonal)</p>
+                                    <div style="display:flex;gap:8px;align-items:center;margin-bottom:4px;flex-wrap:wrap;">
+                                        <input type="text" id="evidenceFileDisplay" readonly value="No file chosen" 
+                                               style="padding:6px 10px;border:1px solid #e0e0e0;border-radius:6px;background:#f5f6fa;font-size:13px;flex:1;min-width:150px;max-width:280px;color:#666;cursor:default;pointer-events:none;" />
+                                        <input type="file" multiple id="evidenceUpload" style="display:none;" />
+                                        <button id="uploadEvidenceBtn" style="background:#0d3461;color:white;border:none;padding:6px 18px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:500;">Upload file</button>
+                                    </div>
+                                    <p style="font-size:12px;color:#888;">(Max 10MB each)</p>
+                                </div>
+                                <!-- RIGHT SIDE: Empty (no preview needed) -->
+                                <div style="flex:1;text-align:right;padding-left:20px;">
+                                    <!-- Nothing here -->
+                                </div>
+                            </div>
+
+                            <!-- Navigation buttons -->
+                            <div style="display:flex;justify-content:space-between;margin-top:24px;flex-wrap:wrap;gap:8px;">
+                                <button class="btn-prev" onclick="prevStep(2)" style="background:#0d3461;color:white;border:none;padding:8px 30px;border-radius:6px;font-size:14px;cursor:pointer;font-weight:600;">← PREVIOUS</button>
+                                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                                    <button class="btn-cancel" id="cancelReportBtn" style="background:#e5533d;color:white;border:none;padding:8px 30px;border-radius:6px;font-size:14px;cursor:pointer;font-weight:600;">✕ Cancel</button>
+                                    <button class="btn-submit" id="submitReportBtn" style="background:#28a745;color:white;border:none;padding:8px 30px;border-radius:6px;font-size:14px;cursor:pointer;font-weight:600;">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== ALL INCIDENT SECTION (Completely empty) ===== -->
+            <div id="allIncidentSection" style="display:none;">
+                <!-- Nothing here – exactly as requested -->
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <div class="footer">© 2026 Barangay Blotter</div>
+
+    <!-- ========== MODALS ========== -->
+
+    <!-- 1. FILE UPLOAD MODAL -->
+    <div id="fileUploadModal" class="modal-overlay" style="display:none;">
+        <div class="modal-box" style="min-width:400px;max-width:450px;text-align:center;padding:30px;">
+            <div style="display:flex;justify-content:flex-end;">
+                <span class="close-modal" onclick="closeFileUploadModal()" style="cursor:pointer;font-size:20px;color:#888;">&times;</span>
+            </div>
+            <h3 style="margin-bottom:4px;font-size:18px;">File Upload</h3>
+            <p style="color:#888;font-size:13px;margin-bottom:20px;">Select and upload your file</p>
+            <div style="border:2px dashed #ccc;border-radius:8px;padding:30px 20px;background:#fafafa;margin-bottom:16px;">
+                <p style="color:#999;font-size:14px;margin-bottom:12px;">Drag files to upload</p>
+                <p style="color:#ccc;font-size:13px;margin-bottom:12px;">or</p>
+                <button id="browseFileBtn" style="background:#0d3461;color:white;border:none;padding:8px 20px;border-radius:4px;font-size:14px;cursor:pointer;">Browse file</button>
+                <input type="file" id="browseFileInput" style="display:none;" />
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. UPLOAD SUCCESS MODAL -->
+    <div id="uploadSuccessModal" class="modal-overlay" style="display:none;">
+        <div class="modal-box" style="min-width:400px;max-width:450px;text-align:center;padding:30px;">
+            <div style="font-size:60px;color:#28a745;margin-bottom:10px;">📄</div>
+            <h3 style="color:#28a745;font-size:20px;font-weight:700;margin-bottom:4px;">Success</h3>
+            <p style="color:#666;font-size:14px;margin-bottom:20px;">The file was uploaded successfully.</p>
+            <button onclick="closeUploadSuccessModal()" style="background:#28a745;color:white;border:none;padding:8px 30px;border-radius:4px;font-size:14px;cursor:pointer;">Done</button>
+        </div>
+    </div>
+
+    <!-- 3. DISCARD CONFIRMATION MODAL -->
+    <div id="discardModal" class="modal-overlay" style="display:none;">
+        <div class="modal-box" style="min-width:400px;max-width:450px;text-align:center;padding:30px;">
+            <h3 style="font-size:18px;font-weight:700;margin-bottom:8px;">Discard Unsaved Report?</h3>
+            <p style="color:#666;font-size:13px;margin-bottom:20px;">Your progress on this incident report has not been saved. If you cancel now, all entered data will be lost.</p>
+            <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+                <button onclick="closeDiscardModal()" style="background:white;border:1px solid #ccc;color:#333;padding:8px 30px;border-radius:4px;font-size:14px;cursor:pointer;width:180px;">Keep Editing</button>
+                <button onclick="confirmDiscard()" style="background:#dc3545;border:none;color:white;padding:8px 30px;border-radius:4px;font-size:14px;cursor:pointer;width:180px;">Discard Report</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. SUBMIT SUCCESS MODAL -->
+    <div id="submitSuccessModal" class="modal-overlay" style="display:none;">
+        <div class="modal-box" style="min-width:450px;max-width:500px;text-align:center;padding:30px;">
+            <h3 style="font-size:20px;font-weight:700;margin-bottom:8px;">Report Submitted Successfully</h3>
+            <p style="color:#666;font-size:13px;margin-bottom:4px;">Your report has been received and logged. Please keep your Reference Number for your records.</p>
+            <p style="font-weight:600;color:#0d3461;font-size:15px;margin-bottom:20px;">Reference No: <span id="referenceNumberDisplay">BLT-2026-0001</span></p>
+            <button onclick="closeSubmitSuccessModal()" style="background:#0d3461;color:white;border:none;padding:8px 40px;border-radius:4px;font-size:14px;cursor:pointer;">Done</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
