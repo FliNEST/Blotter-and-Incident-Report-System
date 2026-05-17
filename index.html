@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Barangay Management System</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+    <!-- ======== HEADER ======== -->
+    <div class="header">
+        <div class="header-left">
+            <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <line x1="3" y1="12" x2="21" y2="12" />
+                    <line x1="3" y1="18" x2="21" y2="18" />
+                </svg>
+            </button>
+            <img class="logo-img" src="images/barangay logo.jpg" alt="Barangay Logo" />
+            <div class="header-title">
+                <h1>BARANGAY MANAGEMENT SYSTEM</h1>
+                <p>Barangay Sta. Ana, Pateros</p>
+            </div>
+        </div>
+        <div class="header-right">
+            <span class="breadcrumb">Blotter / All incident</span>
+            <div class="header-icons">
+                <button class="icon-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                    </svg>
+                </button>
+                <button class="icon-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======== SIDEBAR OVERLAY ======== -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ======== BODY LAYOUT ======== -->
+    <div class="layout">
+
+        <!-- ===== SIDEBAR ===== -->
+        <div class="sidebar">
+            <div class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="3 9 12 4 21 9" />
+                    <path d="M5 10v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6" />
+                </svg>
+                Dashboard
+            </div>
+            <div class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+                Resident
+            </div>
+            <div class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                </svg>
+                Certificate
+            </div>
+            <div class="nav-item active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                </svg>
+                Blotter
+            </div>
+            <div class="submenu">
+                <div class="sub-item">Dashboard</div>
+                <div class="sub-item">Create Report</div>
+                <div class="sub-item" style="font-weight:600;color:#0d3461;">All Incident</div>
+                <div class="sub-item">Schedules</div>
+            </div>
+            <div class="nav-divider"></div>
+            <div class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                Financial
+            </div>
+            <div class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+                    <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+                    <line x1="6" y1="1" x2="6" y2="4" />
+                    <line x1="10" y1="1" x2="10" y2="4" />
+                    <line x1="14" y1="1" x2="14" y2="4" />
+                </svg>
+                Announcement
+            </div>
+            <div class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                </svg>
+                Account
+            </div>
+            <div class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3" />
+                    <path d="M19.07 4.93l-1.41 1.41M4.93 4.93l1.41 1.41M19.07 19.07l-1.41-1.41M4.93 19.07l1.41-1.41M12 2v2M12 20v2M2 12h2M20 12h2" />
+                </svg>
+                Settings
+            </div>
+            <div class="nav-divider"></div>
+            <div class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                    <polyline points="16 17 21 12 16 7" />
+                    <line x1="21" y1="12" x2="9" y2="12" />
+                </svg>
+                Logout
+            </div>
+        </div>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <div class="main">
+
+            <!-- STAT CARDS -->
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div>
+                        <div class="stat-label">Pending</div>
+                        <div class="stat-val orange" id="pendingCount">0</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div>
+                        <div class="stat-label">Investigating</div>
+                        <div class="stat-val teal" id="investigatingCount">0</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div>
+                        <div class="stat-label">Resolved</div>
+                        <div class="stat-val pink" id="resolvedCount">0</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div>
+                        <div class="stat-label">Resolution Rate</div>
+                        <div class="stat-val orange" id="resolutionRate">0%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BLOTTER RECORDS -->
+            <div class="section-box">
+                <div class="section-header" style="background:transparent;color:#333;padding:15px 18px 5px;">
+                    <h3 style="font-weight:700;margin-bottom:4px;">Blotter Records</h3>
+                    <p style="font-size:13px;color:#777;font-weight:400;">Search, filter, and manage incident reports</p>
+                </div>
+                <div class="filters-row" style="border-bottom:1px solid #e4e8ef;padding-bottom:12px;">
+                    <div class="filter-group" style="flex:2;">
+                        <label style="font-size:13px;font-weight:600;color:#222;">Report Period</label>
+                        <div class="search-wrap" style="width:100%;">
+                            <input class="filter-input" type="text" id="searchInput" placeholder="Search by ID, name, location..." style="width:100%;padding:10px 14px;border-radius:8px;background:#f5f6fa;" />
+                            <span class="search-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="color:#aaa;">
+                                    <circle cx="11" cy="11" r="8" />
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label style="visibility:hidden;">Status</label>
+                        <div class="dropdown-container" id="statusContainer">
+                            <div class="dropdown-trigger" id="statusTrigger" style="width:140px;">
+                                <span id="statusLabel">All Status</span>
+                                <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;color:#888;flex-shrink:0;transition:transform 0.2s;">
+                                    <polyline points="6 9 12 15 18 9" />
+                                </svg>
+                            </div>
+                            <div class="dropdown-menu" id="statusMenu">
+                                <div class="dropdown-option selected" data-value="All">All Status</div>
+                                <div class="dropdown-option" data-value="Pending">Pending</div>
+                                <div class="dropdown-option" data-value="Investigating">Investigating</div>
+                                <div class="dropdown-option" data-value="Resolved">Resolved</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label style="visibility:hidden;">Types</label>
+                        <select class="filter-select" id="typeFilter" style="width:140px;">
+                            <option value="All">All Types</option>
+                            <option value="Physical Abuse">Physical Abuse</option>
+                            <option value="Theft">Theft</option>
+                            <option value="Domestic Violence">Domestic Violence</option>
+                            <option value="Verbal Abuse">Verbal Abuse</option>
+                            <option value="Trespassing">Trespassing</option>
+                            <option value="Vandalism">Vandalism</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-wrap" style="padding:0 4px;">
+                    <table id="incidentTable">
+                        <thead>
+                            <tr>
+                                <th>Incident ID</th>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>Complainant</th>
+                                <th>Location</th>
+                                <th>Status</th>
+                                <th style="text-align:center;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- rows rendered by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div><!-- end main -->
+    </div><!-- end layout -->
+
+    <!-- ======== FOOTER ======== -->
+    <div class="footer">© 2025 Barangay Blotter</div>
+
+    <!-- ======== EDIT MODAL ======== -->
+    <div id="editModal" class="modal-overlay" style="display:none;">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Blotter Report</h3>
+                <span class="close-modal" id="closeModalBtn">&times;</span>
+            </div>
+            <div class="modal-body">
+                <table style="width:100%;margin-bottom:16px;">
+                    <thead>
+                        <tr>
+                            <th>Incident ID</th>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Complainant</th>
+                            <th>Location</th>
+                            <th>Action</th>
+                            <th>Update by</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="modalIncidentId">-</td>
+                            <td id="modalDate">-</td>
+                            <td id="modalType">-</td>
+                            <td id="modalComplainant">-</td>
+                            <td id="modalLocation">-</td>
+                            <td>
+                                <span class="badge badge-inv" id="modalStatusBadge" style="cursor:pointer;">Investigating</span>
+                                <span class="badge badge-res" id="modalResolveBadge" style="cursor:pointer;">Resolved</span>
+                            </td>
+                            <td id="modalUpdateBy">Staff / Rome</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="display:flex;justify-content:center;gap:16px;margin-top:12px;">
+                    <button class="btn-cancel" id="modalCancelBtn">Cancel</button>
+                    <button class="btn-update" id="modalUpdateBtn">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======== DETAIL MODAL ======== -->
+    <div id="detailModal" class="modal-overlay" style="display:none;">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Blotter Record Details</h3>
+                <span class="close-modal" id="closeDetailModalBtn">&times;</span>
+            </div>
+            <div class="modal-body">
+                <table style="width:100%;margin-bottom:16px;">
+                    <thead>
+                        <tr>
+                            <th>Incident ID</th>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Complainant</th>
+                            <th>Location</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="detailIncidentId">-</td>
+                            <td id="detailDate">-</td>
+                            <td id="detailType">-</td>
+                            <td id="detailComplainant">-</td>
+                            <td id="detailLocation">-</td>
+                            <td><span class="badge" id="detailStatus">-</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="margin-bottom:12px;">
+                    <strong style="font-size:13px;display:block;margin-bottom:4px;">Description</strong>
+                    <div id="detailDescription" style="padding:10px;background:#f5f6fa;border-radius:6px;font-size:13px;color:#333;min-height:60px;"></div>
+                </div>
+                <div style="margin-bottom:12px;">
+                    <strong style="font-size:13px;display:block;margin-bottom:4px;">Signature Photo</strong>
+                    <div id="detailSignatureContainer">
+                        <img id="detailSignatureImg" src="" alt="Signature" style="max-width:200px;max-height:150px;border:1px solid #ddd;border-radius:4px;padding:4px;background:white;display:none;" />
+                        <span id="detailSignatureNone" style="font-size:13px;color:#999;">No signature uploaded</span>
+                    </div>
+                </div>
+                <div style="margin-bottom:12px;">
+                    <strong style="font-size:13px;display:block;margin-bottom:4px;">Evidence Files</strong>
+                    <div id="detailEvidenceContainer">
+                        <ul id="detailEvidenceList" style="list-style:none;padding:0;"></ul>
+                        <span id="detailEvidenceNone" style="font-size:13px;color:#999;">No evidence files uploaded</span>
+                    </div>
+                </div>
+                <div style="display:flex;justify-content:flex-end;gap:16px;margin-top:12px;">
+                    <button class="btn-cancel" id="detailCloseBtn">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
