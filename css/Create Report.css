@@ -86,3 +86,7 @@ tr:hover td { background:#f9fbff; }
     .col-left, .col-right { width:100% !important; }
     .modal-box { min-width:95%; padding:20px; }
 }
+
+.sub-item a {
+  text-decoration: none;
+}

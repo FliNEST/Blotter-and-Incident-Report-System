@@ -5,6 +5,7 @@
     box-sizing: border-box;
 }
 
+
 body {
     font-family: 'Segoe UI', sans-serif;
     background: #f1f3f6;
@@ -155,6 +156,10 @@ body {
     transition: all 0.2s;
     border-radius: 0 6px 6px 0;
 }
+.sub-item a {
+  text-decoration: none;
+}
+
 
 .sub-item:hover {
     color: #0d3461;
