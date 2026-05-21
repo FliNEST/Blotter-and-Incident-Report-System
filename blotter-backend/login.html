@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login – Barangay Management System</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Segoe UI',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1a3a6b 0%,#1e4d99 60%,#1a6bb5 100%)}
+    .card{background:#fff;border-radius:16px;padding:40px 36px;width:100%;max-width:400px;box-shadow:0 24px 60px rgba(0,0,0,.25);animation:slideUp .4s ease}
+    @keyframes slideUp{from{transform:translateY(24px);opacity:0}to{transform:translateY(0);opacity:1}}
+    .logo-wrap{text-align:center;margin-bottom:28px}
+    .logo-wrap .logo{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#1a3a6b,#2563eb);display:inline-flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:12px}
+    .logo-wrap h2{font-size:18px;font-weight:700;color:#1a3a6b}
+    .logo-wrap p{font-size:12px;color:#64748b;margin-top:3px}
+    .field{margin-bottom:16px}
+    .field label{display:block;font-size:13px;font-weight:600;color:#334155;margin-bottom:5px}
+    .input-wrap{position:relative}
+    .input-wrap i{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:14px}
+    .input-wrap input{width:100%;padding:10px 12px 10px 36px;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;color:#1e293b;outline:none;transition:border-color .2s,box-shadow .2s}
+    .input-wrap input:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+    .eye-btn{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#94a3b8;font-size:14px}
+    .btn-login{width:100%;padding:12px;border:none;border-radius:8px;background:#2563eb;color:#fff;font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s;margin-top:8px}
+    .btn-login:hover{background:#1d4ed8;transform:translateY(-1px);box-shadow:0 6px 20px rgba(37,99,235,.35)}
+    .btn-login:active{transform:scale(.97)}
+    .btn-login:disabled{background:#94a3b8;cursor:not-allowed;transform:none;box-shadow:none}
+    .error-msg{background:#fee2e2;color:#dc2626;border-radius:8px;padding:10px 14px;font-size:13px;margin-top:12px;display:none}
+    .error-msg.show{display:block}
+    .hint{text-align:center;font-size:12px;color:#94a3b8;margin-top:16px}
+    .hint strong{color:#64748b}
+    .spinner{display:none;width:18px;height:18px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto}
+    @keyframes spin{to{transform:rotate(360deg)}}
+  </style>
+</head>
+<body>
+<div class="card">
+  <div class="logo-wrap">
+    <div class="logo">🏛️</div>
+    <h2>BARANGAY MANAGEMENT SYSTEM</h2>
+    <p>Barangay Sta. Ana, Pateros</p>
+  </div>
+
+  <div class="field">
+    <label>Email Address</label>
+    <div class="input-wrap">
+      <i class="fa fa-envelope"></i>
+      <input type="email" id="email" placeholder="Enter your email" autocomplete="email"/>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Password</label>
+    <div class="input-wrap">
+      <i class="fa fa-lock"></i>
+      <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password"/>
+      <button class="eye-btn" type="button" onclick="togglePw()" id="eye-btn">
+        <i class="fa fa-eye" id="eye-icon"></i>
+      </button>
+    </div>
+  </div>
+
+  <button class="btn-login" id="login-btn" onclick="doLogin()">
+    <span id="btn-text">Sign In</span>
+    <div class="spinner" id="spinner"></div>
+  </button>
+
+  <div class="error-msg" id="err-msg"></div>
+
+  <div class="hint">
+    Default accounts:<br>
+    <strong>admin@gmail.com</strong> / Admin@123 &nbsp;|&nbsp;
+    <strong>kagawad@gmail.com</strong> / Kagawad@123<br>
+    <strong>captain@gmail.com</strong> / Captain@123 &nbsp;|&nbsp;
+    <strong>juandelacruz@gmail.com</strong> / Resident@123
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script>
+  // Redirect if already logged in
+  if (window.api?.auth.isLoggedIn()) redirectByRole(window.api.auth.getRole());
+
+  function togglePw() {
+    const pw   = document.getElementById('password');
+    const icon = document.getElementById('eye-icon');
+    pw.type = pw.type === 'password' ? 'text' : 'password';
+    icon.className = pw.type === 'password' ? 'fa fa-eye' : 'fa fa-eye-slash';
+  }
+
+  async function doLogin() {
+    const email    = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const btn      = document.getElementById('login-btn');
+    const errMsg   = document.getElementById('err-msg');
+    const spinner  = document.getElementById('spinner');
+    const btnText  = document.getElementById('btn-text');
+
+    if (!email || !password) {
+      showError('Please enter your email and password.');
+      return;
+    }
+
+    // Show loading
+    btn.disabled   = true;
+    spinner.style.display = 'block';
+    btnText.style.display = 'none';
+    errMsg.classList.remove('show');
+
+    try {
+      const data = await window.api.auth.login(email, password);
+      // Redirect based on role
+      redirectByRole(data.user.role);
+    } catch (err) {
+      showError(err.message || 'Login failed. Please try again.');
+    } finally {
+      btn.disabled          = false;
+      spinner.style.display = 'none';
+      btnText.style.display = 'inline';
+    }
+  }
+
+  function showError(msg) {
+    const el = document.getElementById('err-msg');
+    el.textContent = msg;
+    el.classList.add('show');
+  }
+
+  // Enter key support
+  document.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+</script>
+</body>
+</html>

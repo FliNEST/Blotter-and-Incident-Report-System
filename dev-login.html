@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dev Login – BMS Testing</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Segoe UI',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1a3a6b 0%,#1e4d99 60%,#1a6bb5 100%)}
+
+    .card{background:#fff;border-radius:16px;padding:36px;width:100%;max-width:420px;box-shadow:0 24px 60px rgba(0,0,0,.25);animation:up .4s ease}
+    @keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+    .dev-badge{background:#fef3c7;border:1px solid #f59e0b;border-radius:8px;padding:8px 14px;font-size:12px;color:#92400e;margin-bottom:20px;display:flex;align-items:center;gap:8px}
+
+    .logo-wrap{text-align:center;margin-bottom:24px}
+    .logo{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#1a3a6b,#2563eb);display:inline-flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:10px}
+    h2{font-size:17px;font-weight:700;color:#1a3a6b}
+    p.sub{font-size:12px;color:#64748b;margin-top:3px}
+
+    /* Quick role buttons */
+    .role-section{margin-bottom:22px}
+    .role-label{font-size:13px;font-weight:600;color:#334155;margin-bottom:10px}
+    .role-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .role-btn{padding:12px 10px;border:2px solid #e2e8f0;border-radius:10px;background:#fff;cursor:pointer;text-align:center;transition:all .2s;font-size:12px;color:#475569}
+    .role-btn:hover{border-color:#2563eb;background:#eff6ff;color:#2563eb}
+    .role-btn.selected{border-color:#2563eb;background:#eff6ff;color:#2563eb}
+    .role-btn i{display:block;font-size:22px;margin-bottom:5px}
+    .role-btn .role-name{font-weight:700;font-size:13px}
+    .role-btn .role-email{font-size:10px;color:#94a3b8;margin-top:2px}
+    .role-btn.selected .role-email{color:#93c5fd}
+
+    /* Manual login */
+    .divider{display:flex;align-items:center;gap:10px;margin:18px 0;color:#94a3b8;font-size:12px}
+    .divider::before,.divider::after{content:'';flex:1;height:1px;background:#e2e8f0}
+
+    .field{margin-bottom:14px}
+    .field label{display:block;font-size:13px;font-weight:600;color:#334155;margin-bottom:5px}
+    .inp-wrap{position:relative}
+    .inp-wrap i{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:13px}
+    .inp-wrap input{width:100%;padding:10px 12px 10px 34px;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;color:#1e293b;outline:none;transition:border-color .2s,box-shadow .2s}
+    .inp-wrap input:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+    .eye{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#94a3b8;font-size:13px}
+
+    .btn-login{width:100%;padding:12px;border:none;border-radius:8px;background:#2563eb;color:#fff;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+    .btn-login:hover{background:#1d4ed8;transform:translateY(-1px);box-shadow:0 6px 20px rgba(37,99,235,.3)}
+    .btn-login:disabled{background:#94a3b8;cursor:not-allowed;transform:none;box-shadow:none}
+
+    .spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .err{background:#fee2e2;color:#dc2626;border-radius:8px;padding:10px 14px;font-size:13px;margin-top:12px;display:none;align-items:center;gap:8px}
+    .err.show{display:flex}
+
+    /* Current session display */
+    .session-box{background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:14px;margin-top:18px;display:none}
+    .session-box.show{display:block}
+    .session-box h4{font-size:13px;font-weight:700;color:#166534;margin-bottom:8px}
+    .session-row{display:flex;justify-content:space-between;font-size:12px;color:#15803d;margin-bottom:3px}
+    .session-btn{margin-top:10px;width:100%;padding:8px;border:1px solid #86efac;border-radius:7px;background:#fff;color:#16a34a;font-size:12px;font-weight:600;cursor:pointer;transition:background .2s}
+    .session-btn:hover{background:#dcfce7}
+    .clear-btn{margin-top:6px;width:100%;padding:8px;border:1px solid #fca5a5;border-radius:7px;background:#fff;color:#dc2626;font-size:12px;font-weight:600;cursor:pointer;transition:background .2s}
+    .clear-btn:hover{background:#fee2e2}
+  </style>
+</head>
+<body>
+<div class="card">
+
+  <div class="dev-badge">
+    <i class="fa fa-flask"></i>
+    <span><strong>DEV/TEST ONLY</strong> — Pansamantalang login page para sa testing. Tanggalin bago mag-deploy.</span>
+  </div>
+
+  <div class="logo-wrap">
+    <div class="logo">🏛️</div>
+    <h2>BARANGAY MANAGEMENT SYSTEM</h2>
+    <p class="sub">Barangay Sta. Ana, Pateros</p>
+  </div>
+
+  <!-- Quick Role Buttons -->
+  <div class="role-section">
+    <div class="role-label">Quick Login — piliin ang role:</div>
+    <div class="role-grid">
+      <button class="role-btn" onclick="quickLogin('admin@gmail.com','Admin@123',this)">
+        <i class="fa fa-user-shield"></i>
+        <div class="role-name">Admin</div>
+        <div class="role-email">admin@gmail.com</div>
+      </button>
+      <button class="role-btn" onclick="quickLogin('captain@gmail.com','Captain@123',this)">
+        <i class="fa fa-star"></i>
+        <div class="role-name">Captain</div>
+        <div class="role-email">captain@gmail.com</div>
+      </button>
+      <button class="role-btn" onclick="quickLogin('kagawad@gmail.com','Kagawad@123',this)">
+        <i class="fa fa-gavel"></i>
+        <div class="role-name">Kagawad</div>
+        <div class="role-email">kagawad@gmail.com</div>
+      </button>
+      <button class="role-btn" onclick="quickLogin('juandelacruz@gmail.com','Resident@123',this)">
+        <i class="fa fa-user"></i>
+        <div class="role-name">Resident</div>
+        <div class="role-email">juandelacruz@gmail.com</div>
+      </button>
+    </div>
+  </div>
+
+  <div class="divider">or manual login</div>
+
+  <div class="field">
+    <label>Email</label>
+    <div class="inp-wrap">
+      <i class="fa fa-envelope"></i>
+      <input type="email" id="email" placeholder="Enter email"/>
+    </div>
+  </div>
+  <div class="field">
+    <label>Password</label>
+    <div class="inp-wrap">
+      <i class="fa fa-lock"></i>
+      <input type="password" id="password" placeholder="Enter password"/>
+      <button class="eye" onclick="togglePw()"><i class="fa fa-eye" id="eye-ic"></i></button>
+    </div>
+  </div>
+
+  <button class="btn-login" id="login-btn" onclick="doLogin()">
+    <span id="btn-txt">Sign In</span>
+    <div class="spinner" id="spinner"></div>
+  </button>
+
+  <div class="err" id="err"><i class="fa fa-circle-exclamation"></i><span id="err-msg"></span></div>
+
+  <!-- Current session info -->
+  <div class="session-box" id="session-box">
+    <h4><i class="fa fa-circle-check" style="color:#16a34a"></i> Active Session</h4>
+    <div class="session-row"><span>Name:</span><span id="s-name">—</span></div>
+    <div class="session-row"><span>Email:</span><span id="s-email">—</span></div>
+    <div class="session-row"><span>Role:</span><span id="s-role">—</span></div>
+    <button class="session-btn" onclick="goToDashboard()">
+      <i class="fa fa-arrow-right"></i> Go to my Dashboard
+    </button>
+    <button class="clear-btn" onclick="clearSession()">
+      <i class="fa fa-right-from-bracket"></i> Logout / Switch account
+    </button>
+  </div>
+
+</div>
+
+<script>
+  const API = 'http://localhost:3000/api';
+
+  // Check if already logged in
+  window.onload = () => checkSession();
+
+  function checkSession() {
+    const token = localStorage.getItem('token');
+    const user  = JSON.parse(localStorage.getItem('user') || 'null');
+    if (token && user) {
+      document.getElementById('session-box').classList.add('show');
+      document.getElementById('s-name').textContent  = user.name  || '—';
+      document.getElementById('s-email').textContent = user.email || '—';
+      document.getElementById('s-role').textContent  = user.role  || '—';
+    }
+  }
+
+  function togglePw() {
+    const pw = document.getElementById('password');
+    const ic = document.getElementById('eye-ic');
+    pw.type = pw.type === 'password' ? 'text' : 'password';
+    ic.className = pw.type === 'password' ? 'fa fa-eye' : 'fa fa-eye-slash';
+  }
+
+  function quickLogin(email, password, btn) {
+    document.getElementById('email').value    = email;
+    document.getElementById('password').value = password;
+    document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    doLogin();
+  }
+
+  async function doLogin() {
+    const email    = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    if (!email || !password) { showErr('Punan ang email at password.'); return; }
+
+    setLoading(true);
+    hideErr();
+
+    try {
+      const res  = await fetch(`${API}/auth/login`, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ email, password })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || 'Login failed');
+
+      // Save session
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user',  JSON.stringify(data.user));
+
+      // Redirect by role
+      const routes = {
+        admin:    'admin.html',
+        captain:  'kagawad.html',
+        kagawad:  'kagawad.html',
+        resident: 'Resident.html'
+      };
+      const dest = routes[data.user.role] || 'admin.html';
+      window.location.href = dest;
+
+    } catch (err) {
+      showErr(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  function goToDashboard() {
+    const user = JSON.parse(localStorage.getItem('user') || 'null');
+    if (!user) return;
+    const routes = { admin:'admin.html', captain:'kagawad.html', kagawad:'kagawad.html', resident:'Resident.html' };
+    window.location.href = routes[user.role] || 'admin.html';
+  }
+
+  function clearSession() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    document.getElementById('session-box').classList.remove('show');
+    document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('selected'));
+    document.getElementById('email').value    = '';
+    document.getElementById('password').value = '';
+  }
+
+  function setLoading(on) {
+    document.getElementById('login-btn').disabled       = on;
+    document.getElementById('spinner').style.display    = on ? 'block' : 'none';
+    document.getElementById('btn-txt').style.display    = on ? 'none'  : 'inline';
+  }
+  function showErr(msg) {
+    const el = document.getElementById('err');
+    document.getElementById('err-msg').textContent = msg;
+    el.classList.add('show');
+  }
+  function hideErr() { document.getElementById('err').classList.remove('show'); }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+</script>
+</body>
+</html>
